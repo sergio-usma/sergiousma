@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Sergio Andrés Usma Estupiñán — Consultor Estratégico Multidisciplinario: Inteligencia Artificial (NVIDIA Jetson, Edge Computing), Seguridad Marítima y Offshore (MARPOL, OMI, DIMAR), Gestión Pública (MGA, SECOP), Turismo Sostenible. MBA, Azure AI Engineer, Autor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Sergio Andrés Usma Estupiñán","jobTitle":"Consultor Estratégico | AI Engineer | Project Director | Author","email":"sergioandresusma@hotmail.com","telephone":"+57 313 514 4200","address":{"@type":"PostalAddress","addressLocality":"Cartagena","addressRegion":"Bolívar","addressCountry":"CO"},"sameAs":["https://linkedin.com/in/sergiousma"],"knowsAbout":["Inteligencia Artificial Generativa","Edge Computing","NVIDIA Jetson","MARPOL","OMI","ISO 45001","Formulación MGA","Turismo Sostenible","Hidrografía","Contratación Estatal"]}</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#06090d;color:#e8edf2;font-family:'Space Grotesk',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#8fd131;text-decoration:none}
+  a:hover{color:#b7f05a}
+  *{box-sizing:border-box}
+  ::selection{background:rgba(118,185,0,.35)}
+  input,textarea,select{font-family:'Space Grotesk',Helvetica,sans-serif}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:rgba(118,185,0,.7) !important;box-shadow:0 0 0 3px rgba(118,185,0,.15)}
+  @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+  @keyframes auraSpin{to{--ang:360deg}}
+  @keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes pulseGlow{0%,100%{opacity:.5}50%{opacity:1}}
+  @keyframes drift{from{background-position:0 0}to{background-position:0 -1200px}}
+  ::-webkit-scrollbar{width:10px;background:#06090d}
+  ::-webkit-scrollbar-thumb{background:#1c2630;border-radius:5px}
+</style>
+</helmet>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 4vw;background:rgba(6,9,13,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)">
+  <a href="#inicio" style="display:flex;align-items:center;gap:10px;color:#e8edf2">
+    <span style="display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:conic-gradient(from 220deg,#76b900,#4896ff,#d4af37,#76b900);font-weight:700;font-size:15px;color:#06090d">SU</span>
+    <span style="font-weight:600;letter-spacing:.02em">Sergio Usma</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:26px;font-size:14.5px;flex-wrap:wrap;justify-content:flex-end">
+    <a href="#porque" style="color:#aab6c2" style-hover="color:#ffffff">Por qué yo</a>
+    <a href="#proyectos" style="color:#aab6c2" style-hover="color:#ffffff">Proyectos</a>
+    <a href="#servicios" style="color:#aab6c2" style-hover="color:#ffffff">Servicios</a>
+    <a href="#experiencia" style="color:#aab6c2" style-hover="color:#ffffff">Experiencia</a>
+    <a href="#certificaciones" style="color:#aab6c2" style-hover="color:#ffffff">Certificaciones</a>
+    <a href="assets/CV_Sergio_Usma_ATS.docx" download="CV_Sergio_Usma_ATS.docx" style="padding:9px 18px;border-radius:99px;background:#76b900;color:#06120a;font-weight:600" style-hover="background:#8fd131;transform:translateY(-1px)">Descargar CV</a>
+  </div>
+</nav>
+
+<header id="inicio" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(1100px 600px at 75% 20%,rgba(118,185,0,.10),transparent 60%),radial-gradient(900px 700px at 15% 85%,rgba(72,150,255,.12),transparent 60%),#06090d">
+  <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+  <div style="position:relative;z-index:2;width:min(1200px,92vw);margin:0 auto;padding:130px 0 70px;display:grid;grid-template-columns:1.35fr .8fr;gap:56px;align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:99px;border:1px solid rgba(118,185,0,.35);background:rgba(118,185,0,.08);font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#a4d95c;letter-spacing:.06em">
+        <span style="width:8px;height:8px;border-radius:50%;background:#76b900;animation:pulseGlow 2s ease-in-out infinite"></span>
+        DISPONIBLE · CONSULTORÍA NACIONAL E INTERNACIONAL
+      </div>
+      <h1 style="margin:22px 0 6px;font-size:clamp(38px,5.2vw,66px);line-height:1.03;font-weight:700;letter-spacing:-.02em;background:linear-gradient(100deg,#ffffff 30%,#a9c46a 60%,#6fa8e8);-webkit-background-clip:text;background-clip:text;color:transparent">Sergio Andrés Usma Estupiñán</h1>
+      <div style="min-height:38px;margin:14px 0 4px;font-family:'JetBrains Mono',monospace;font-size:clamp(15px,1.7vw,20px);color:#9fd14e">
+        <span>{{ typedText }}</span><span style="display:inline-block;width:10px;height:1.15em;vertical-align:text-bottom;background:#76b900;margin-left:3px;animation:caret 1s step-end infinite"></span>
+      </div>
+      <p style="max-width:620px;color:#aab6c2;font-size:17px;line-height:1.65"><strong style="color:#e8edf2">No solo gestiono proyectos; diseño la intersección entre la seguridad operativa, la inteligencia artificial y la sostenibilidad.</strong> El puente entre la operación en terreno — offshore, puertos, territorio — y la innovación digital: IA local, Edge Computing y SIG.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px">
+        <a href="assets/CV_Sergio_Usma_ATS.docx" download="CV_Sergio_Usma_ATS.docx" style="padding:14px 28px;border-radius:99px;background:#76b900;color:#06120a;font-weight:700;font-size:15px;box-shadow:0 0 32px rgba(118,185,0,.35)" style-hover="transform:translateY(-2px);box-shadow:0 0 48px rgba(118,185,0,.55)">Descargar CV</a>
+        <a href="#proyectos" style="padding:14px 28px;border-radius:99px;border:1px solid rgba(255,255,255,.22);color:#e8edf2;font-weight:600;font-size:15px" style-hover="border-color:#76b900;color:#b7f05a">Ver Portafolio</a>
+        <a href="#contacto" style="padding:14px 28px;border-radius:99px;border:1px solid rgba(212,175,55,.4);color:#e6c65a;font-weight:600;font-size:15px" style-hover="background:rgba(212,175,55,.1)">Contratar Consultoría</a>
+      </div>
+      <p style="margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#5b6875;max-width:640px;line-height:1.8">IA Generativa · Edge Computing · NVIDIA Jetson AGX Orin · MARPOL · DIMAR · OMI/STCW · ISO 45001 · Oil &amp; Gas · Offshore · Formulación MGA · SECOP · Peritaje Marítimo · Hidrografía · Docencia Universitaria · Turismo Comunitario · USAID · ONU</p>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <div style="position:relative;width:min(320px,70vw);animation:floaty 7s ease-in-out infinite">
+        <div style="position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from var(--ang),#76b900,#4896ff,#d4af37,#76b900);animation:auraSpin 8s linear infinite;filter:blur(14px);opacity:.75"></div>
+        <div style="position:relative;padding:5px;border-radius:50%;background:conic-gradient(from var(--ang),#76b900,#4896ff,#d4af37,#76b900);animation:auraSpin 8s linear infinite">
+          <image-slot id="profile-photo" shape="circle" style="width:100%;aspect-ratio:1/1;display:block" placeholder="Arrastra tu foto de perfil aquí"></image-slot>
+        </div>
+        <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:8px 18px;border-radius:99px;background:rgba(6,9,13,.85);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);font-size:13px;color:#cfd8e0">Cartagena, Colombia · <span style="color:#9fd14e">Remoto / Offshore / Global</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section style="border-block:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)">
+  <div style="width:min(1200px,92vw);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;padding:38px 0;text-align:center">
+    <sc-for list="{{ stats }}" as="st" hint-placeholder-count="6">
+      <div style="padding:10px 6px">
+        <div style="font-size:34px;font-weight:700;color:{{ st.color }}"><span data-count="{{ st.n }}" data-suffix="{{ st.suffix }}">0</span></div>
+        <div style="font-size:13px;color:#8b98a5;margin-top:4px;line-height:1.4">{{ st.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="porque" style="position:relative;padding:110px 0;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(700px 400px at 50% 0%,rgba(72,150,255,.08),transparent)"></div>
+  <div data-reveal style="position:relative;width:min(900px,92vw);margin:0 auto;text-align:center">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#4896ff;margin-bottom:18px">¿POR QUÉ YO?</div>
+    <h2 style="margin:0 0 26px;font-size:clamp(26px,3.4vw,42px);font-weight:600;line-height:1.25;letter-spacing:-.01em">El puente entre el rigor normativo del mundo marítimo y la vanguardia de la <em style="font-style:normal;color:#9fd14e">IA en el borde</em>.</h2>
+    <p style="color:#aab6c2;font-size:17.5px;line-height:1.75;margin:0">Consultor estratégico con formación multidisciplinaria: mientras el sector marítimo y <strong style="color:#e8edf2">Oil &amp; Gas</strong> exige rigor normativo (<strong style="color:#e8edf2">MARPOL, OMI, ISO 45001</strong>), la nueva era exige integración de datos e <strong style="color:#e8edf2">IA local (Edge Computing)</strong>. Mi trayectoria en la Armada Nacional, la alta gerencia pública (Gobernación del Magdalena, INDETUR) y la academia internacional (España, EE. UU.) me permite traducir normativas complejas en soluciones tecnológicas y pedagógicas con impacto medible.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px">
+      <span style="padding:10px 20px;border-radius:99px;border:1px solid rgba(118,185,0,.4);color:#a4d95c;font-size:14px">Tecnología &amp; IA</span>
+      <span style="padding:10px 20px;border-radius:99px;border:1px solid rgba(72,150,255,.4);color:#7cb4f5;font-size:14px">Marítimo · Offshore · Oil &amp; Gas</span>
+      <span style="padding:10px 20px;border-radius:99px;border:1px solid rgba(212,175,55,.4);color:#e6c65a;font-size:14px">Gobernanza · Turismo · Territorio</span>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos" style="padding:40px 0 110px">
+  <div style="width:min(1240px,94vw);margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:54px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#76b900;margin-bottom:14px">FLAGSHIP PROJECTS</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,44px);font-weight:700;letter-spacing:-.01em">Casos de éxito en tres ejes</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:26px">
+      <sc-for list="{{ ejes }}" as="eje" hint-placeholder-count="3">
+        <div data-reveal style="position:relative;border-radius:20px;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0%,{{ eje.color }} 12%,transparent 26%),rgba(255,255,255,.09);animation:auraSpin 6s linear infinite" style-hover="transform:translateY(-6px)">
+          <div style="border-radius:19px;background:#0a0f14;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:transform .3s">
+            <div style="position:relative;height:180px">
+              <div role="img" aria-label="{{ eje.alt }}" style="width:100%;height:100%;background-image:url('{{ eje.art }}');background-size:cover;background-position:center"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,#0a0f14)"></div>
+              <div style="position:absolute;left:20px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:{{ eje.color }}">{{ eje.tag }}</div>
+            </div>
+            <div style="padding:22px 24px 26px;display:flex;flex-direction:column;gap:16px;flex:1">
+              <sc-for list="{{ eje.items }}" as="p" hint-placeholder-count="2">
+                <div>
+                  <h3 style="margin:0 0 6px;font-size:17.5px;font-weight:600;color:#f2f6fa">{{ p.title }}</h3>
+                  <p style="margin:0;font-size:14.5px;line-height:1.6;color:#96a3b0">{{ p.impact }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" style="padding:100px 0;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);border-block:1px solid rgba(255,255,255,.06)">
+  <div style="width:min(1240px,94vw);margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:50px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#d4af37;margin-bottom:14px">MATRIZ DE SERVICIOS</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,44px);font-weight:700">¿Qué puedo hacer por tu organización?</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+      <sc-for list="{{ servicios }}" as="sv" hint-placeholder-count="3">
+        <div data-reveal style="border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.02);padding:28px;backdrop-filter:blur(6px)" style-hover="border-color:{{ sv.color }};background:rgba(255,255,255,.04)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.15em;color:{{ sv.color }};margin-bottom:10px">{{ sv.tag }}</div>
+          <h3 style="margin:0 0 18px;font-size:20px;font-weight:600">{{ sv.title }}</h3>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ sv.items }}" as="it" hint-placeholder-count="4">
+              <li style="display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:#aab6c2"><span style="color:{{ sv.color }};font-weight:700">✓</span><span>{{ it }}</span></li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia" style="padding:110px 0">
+  <div style="width:min(1000px,92vw);margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:60px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#4896ff;margin-bottom:14px">TRAYECTORIA</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,44px);font-weight:700">Experiencia profesional</h2>
+    </div>
+    <div style="position:relative;padding-left:34px;border-left:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;gap:38px">
+      <sc-for list="{{ experiencia }}" as="xp" hint-placeholder-count="5">
+        <div data-reveal style="position:relative">
+          <span style="position:absolute;left:-41px;top:6px;width:13px;height:13px;border-radius:50%;background:{{ xp.color }};box-shadow:0 0 16px {{ xp.color }}"></span>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.1em;color:{{ xp.color }}">{{ xp.period }}</div>
+          <h3 style="margin:6px 0 4px;font-size:19px;font-weight:600;color:#f2f6fa">{{ xp.role }}</h3>
+          <div style="font-size:14.5px;color:#8b98a5;margin-bottom:8px">{{ xp.org }}</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.65;color:#aab6c2">{{ xp.focus }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="libro" style="padding:100px 0;border-block:1px solid rgba(255,255,255,.06);background:radial-gradient(800px 500px at 80% 50%,rgba(118,185,0,.07),transparent)">
+  <div style="width:min(1100px,92vw);margin:0 auto;display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:56px;align-items:center">
+    <div data-reveal style="position:relative">
+      <div style="position:absolute;inset:-12px;border-radius:16px;background:conic-gradient(from var(--ang),#76b900,transparent 40%,#76b900 70%,transparent);animation:auraSpin 7s linear infinite;filter:blur(16px);opacity:.5"></div>
+      <img src="assets/book-cover.png" alt="Libro IA Local con NVIDIA Jetson AGX Orin" style="position:relative;width:100%;border-radius:12px;border:1px solid rgba(118,185,0,.3);display:block;box-shadow:0 30px 60px rgba(0,0,0,.6)">
+    </div>
+    <div data-reveal>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#76b900;margin-bottom:14px">AUTOR PUBLICADO · 2026</div>
+      <h2 style="margin:0 0 16px;font-size:clamp(26px,3.2vw,40px);font-weight:700;line-height:1.15">«IA Local con NVIDIA Jetson AGX Orin»</h2>
+      <p style="color:#aab6c2;font-size:16.5px;line-height:1.7;margin:0 0 18px">Guía práctica para implementar <strong style="color:#e8edf2">Inteligencia Artificial Generativa de forma local y descentralizada</strong> — Edge Computing sin dependencia de la nube — para entornos industriales, marítimos y remotos: desde un puerto hasta la Sierra Nevada.</p>
+      <ul style="margin:0 0 22px;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;font-size:14.5px;color:#96a3b0">
+        <li>✓ Optimización de modelos para inferencia local</li>
+        <li>✓ Visión por computadora y NLP en el edge</li>
+        <li>✓ Casos de uso: industria, robótica, IoT</li>
+        <li>✓ Despliegue en entornos con conectividad limitada</li>
+      </ul>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#5b6875;line-height:1.8">ISBN 978-628-02-5454-8 · Cámara Colombiana del Libro · THEMA UYQF (IA generativa) · Digital / Kindle · Español e Inglés</div>
+    </div>
+  </div>
+</section>
+
+<section id="certificaciones" style="padding:110px 0">
+  <div style="width:min(1100px,94vw);margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:44px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.25em;color:#d4af37;margin-bottom:14px">ARSENAL ACADÉMICO</div>
+      <h2 style="margin:0 0 10px;font-size:clamp(28px,3.6vw,44px);font-weight:700">Formación y certificaciones</h2>
+      <p style="margin:0;color:#8b98a5;font-size:15px">MBA (USA) · Máster (España) · Especialización (UNIR) · SST (UMNG) · Hidrografía (ESB) · Derecho (en curso)</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+        <button onClick="{{ t.select }}" style="cursor:pointer;padding:11px 20px;border-radius:99px;border:1px solid {{ t.borderColor }};background:{{ t.bg }};color:{{ t.fg }};font-size:14px;font-weight:600;font-family:'Space Grotesk',sans-serif;transition:all .25s" style-hover="border-color:#76b900">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">
+      <sc-for list="{{ certItems }}" as="ci" hint-placeholder-count="6">
+        <div title="{{ ci.tip }}" style="border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px 18px;background:rgba(255,255,255,.02);cursor:default" style-hover="border-color:rgba(118,185,0,.5);background:rgba(118,185,0,.05);transform:translateY(-2px)">
+          <div style="font-size:15px;font-weight:600;color:#e8edf2;line-height:1.4">{{ ci.name }}</div>
+          <div style="font-size:13px;color:#8b98a5;margin-top:5px;font-family:'JetBrains Mono',monospace">{{ ci.detail }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:80px 0;border-block:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">
+  <div style="width:min(1200px,94vw);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+    <sc-for list="{{ logros }}" as="lg" hint-placeholder-count="4">
+      <div data-reveal style="display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:16px;border:1px solid rgba(212,175,55,.25);background:rgba(212,175,55,.04)">
+        <span style="font-size:26px;line-height:1">{{ lg.icon }}</span>
+        <div>
+          <div style="font-weight:600;font-size:15.5px;color:#f0e3b8">{{ lg.title }}</div>
+          <div style="font-size:13.5px;color:#96a3b0;margin-top:5px;line-height:1.55">{{ lg.text }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<footer id="contacto" style="position:relative;padding:110px 0 50px;overflow:hidden;background:radial-gradient(900px 500px at 50% 100%,rgba(118,185,0,.08),transparent)">
+  <div style="width:min(1100px,92vw);margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:50px">
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.8vw,46px);font-weight:700;line-height:1.15">¿Un proyecto donde la normativa, la tecnología<br>y el factor humano convergen?</h2>
+      <p style="margin:0;color:#9fd14e;font-size:20px;font-weight:500">Hablemos.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <form onSubmit="{{ sendMail }}" style="display:flex;flex-direction:column;gap:14px">
+        <input ref="{{ nameRef }}" type="text" required placeholder="Nombre completo" style="padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e8edf2;font-size:15px">
+        <input ref="{{ emailRef }}" type="email" required placeholder="Correo electrónico" style="padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e8edf2;font-size:15px">
+        <select ref="{{ topicRef }}" style="padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0d1319;color:#e8edf2;font-size:15px">
+          <option>Consultoría de Proyectos</option>
+          <option>Inteligencia Artificial y Tecnología</option>
+          <option>Seguridad Marítima, Oil &amp; Gas y Puertos</option>
+          <option>SST / Prevención de Riesgos</option>
+          <option>Turismo y Desarrollo Territorial</option>
+          <option>Docencia Universitaria</option>
+          <option>Administración Pública / MGA</option>
+          <option>Otro</option>
+        </select>
+        <textarea ref="{{ msgRef }}" required rows="5" placeholder="Describe tu proyecto o necesidad" style="padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e8edf2;font-size:15px;resize:vertical"></textarea>
+        <button type="submit" style="cursor:pointer;padding:15px;border:none;border-radius:12px;background:#76b900;color:#06120a;font-weight:700;font-size:15.5px;font-family:'Space Grotesk',sans-serif" style-hover="background:#8fd131">Enviar mensaje →</button>
+        <div style="font-size:12.5px;color:#5b6875;text-align:center">Se abrirá tu cliente de correo dirigido a sergioandresusma@hotmail.com</div>
+      </form>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:#76b900;margin-bottom:14px">CONTACTO DIRECTO</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+            <a href="mailto:sergioandresusma@hotmail.com">sergioandresusma@hotmail.com</a>
+            <a href="mailto:sergiovonusma@gmail.com" style="color:#aab6c2" style-hover="color:#ffffff">sergiovonusma@gmail.com</a>
+            <a href="tel:+573135144200" style="color:#aab6c2" style-hover="color:#ffffff">+57 313 514 4200</a>
+            <a href="https://linkedin.com/in/sergiousma" target="_blank" rel="noopener">linkedin.com/in/sergiousma</a>
+          </div>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:#4896ff;margin-bottom:14px">DISPONIBILIDAD</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#aab6c2">Cartagena, Bolívar, Colombia.<br>Movilidad internacional · Offshore · Remoto.<br>Español (nativo) · Inglés (C2, EF SET 74/100).</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:70px;padding-top:26px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#5b6875">
+      <span>© 2026 Sergio Andrés Usma Estupiñán — Consultor Estratégico · AI Engineer · Project Director · Autor</span>
+      <span style="font-family:'JetBrains Mono',monospace">MARPOL · NVIDIA Jetson · MGA · ISO 45001 · STCW</span>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;particleCount&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:90,&quot;min&quot;:30,&quot;max&quot;:220,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { typedText: '', tab: 0 };
+  canvasRef = React.createRef();
+  nameRef = React.createRef();
+  emailRef = React.createRef();
+  topicRef = React.createRef();
+  msgRef = React.createRef();
+
+  phrases = [
+    'Autor de «IA Local con NVIDIA Jetson AGX Orin»',
+    'Consultor Senior en Seguridad Marítima, Offshore & SST',
+    'Líder de Proyectos de Alto Impacto · MGA · USAID · ONU',
+    'Docente Universitario & Estratega en Turismo Sostenible',
+    'Azure AI Engineer · Edge Computing · Full Stack'
+  ];
+
+  componentDidMount() {
+    this.mounted = true;
+    this.typeLoop(0, 0, false);
+    this.startParticles();
+    this.setupReveal();
+    this.setupCounters();
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+    cancelAnimationFrame(this.raf);
+    clearTimeout(this.typeTimer);
+  }
+
+  typeLoop(pi, ci, deleting) {
+    if (!this.mounted) return;
+    const p = this.phrases[pi];
+    let delay = deleting ? 22 : 48;
+    if (!deleting) {
+      ci++;
+      if (ci === p.length) { deleting = true; delay = 2200; }
+    } else {
+      ci--;
+      if (ci === 0) { deleting = false; pi = (pi + 1) % this.phrases.length; delay = 350; }
+    }
+    this.setState({ typedText: p.slice(0, ci) });
+    this.typeTimer = setTimeout(() => this.typeLoop(pi, ci, deleting), delay);
+  }
+
+  startParticles() {
+    const cv = this.canvasRef.current;
+    if (!cv || !(this.props.particles ?? true)) return;
+    const ctx = cv.getContext('2d');
+    const N = this.props.particleCount ?? 90;
+    let W, H, pts = [];
+    const resize = () => {
+      W = cv.width = cv.offsetWidth * devicePixelRatio;
+      H = cv.height = cv.offsetHeight * devicePixelRatio;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const colors = ['118,185,0', '72,150,255', '212,175,55'];
+    for (let i = 0; i < N; i++) pts.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .35 * devicePixelRatio, vy: (Math.random() - .5) * .35 * devicePixelRatio,
+      c: colors[i % 5 === 0 ? 2 : (i % 2)], r: Math.random() * 1.8 + .7
+    });
+    this.mouse = { x: -9999, y: -9999 };
+    cv.parentElement.addEventListener('mousemove', e => {
+      const b = cv.getBoundingClientRect();
+      this.mouse.x = (e.clientX - b.left) * devicePixelRatio;
+      this.mouse.y = (e.clientY - b.top) * devicePixelRatio;
+    });
+    const DIST = 150 * devicePixelRatio;
+    const step = () => {
+      if (!this.mounted) return;
+      ctx.clearRect(0, 0, W, H);
+      for (const p of pts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        const dm = Math.hypot(p.x - this.mouse.x, p.y - this.mouse.y);
+        if (dm < DIST) { p.x += (p.x - this.mouse.x) / dm * .6; p.y += (p.y - this.mouse.y) / dm * .6; }
+        ctx.fillStyle = 'rgba(' + p.c + ',.8)';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r * devicePixelRatio, 0, 7); ctx.fill();
+      }
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < DIST) {
+          ctx.strokeStyle = 'rgba(' + a.c + ',' + (.22 * (1 - d / DIST)).toFixed(3) + ')';
+          ctx.lineWidth = devicePixelRatio * .7;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      this.raf = requestAnimationFrame(step);
+    };
+    step();
+  }
+
+  setupReveal() {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) {
+        e.target.animate([{ opacity: 0, transform: 'translateY(28px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 700, easing: 'cubic-bezier(.2,.7,.2,1)' });
+        io.unobserve(e.target);
+      }
+    }, { threshold: .12 });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+  }
+
+  setupCounters() {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) {
+        const el = e.target, target = parseFloat(el.dataset.count), suffix = el.dataset.suffix || '';
+        const t0 = performance.now(), dur = 1600;
+        const tick = now => {
+          const k = Math.min(1, (now - t0) / dur), ease = 1 - Math.pow(1 - k, 3);
+          el.textContent = Math.round(target * ease).toLocaleString('es-CO') + suffix;
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      }
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+  }
+
+  certData = [
+    { label: 'Docencia, Liderazgo y ONU', items: [
+      { name: 'Diplomado en Docencia Universitaria', detail: 'Pontificia Univ. Javeriana · 100h · 2024', tip: 'Formación pedagógica universitaria' },
+      { name: 'CBT-TOT: Community-based Tourism Training of Trainers', detail: 'ITC Academy / OMC · 2025', tip: 'Formador de formadores en turismo comunitario' },
+      { name: '+12 cursos POTI / ONU Mujeres', detail: 'CIMIC · DDR · Logística ONU · DIH · Género y Paz', tip: 'Instituto para Formación en Operaciones de Paz' },
+      { name: 'Diplomado en Habilidades Directivas y Liderazgo', detail: 'UNIR · 96h · 2022', tip: 'Liderazgo y dirección de equipos' },
+      { name: 'Diplomados ESAP', detail: 'Contratación Estatal · Políticas Públicas · Innovación Pública', tip: 'Escuela Superior de Administración Pública' },
+      { name: 'Diplomados CTeI', detail: 'Univ. El Bosque · Innovación y Competitividad Territorial · 2023', tip: 'Formulación de proyectos de ciencia, tecnología e innovación' }
+    ]},
+    { label: 'Marítimo, OMI (STCW) y Offshore', items: [
+      { name: 'Perito Marítimo en Contaminación Marina y Fluvial (Cat. C)', detail: 'DIMAR · Vigente 2025–2028', tip: 'Licencia oficial de la Dirección General Marítima' },
+      { name: 'Perito Marítimo en Hidrografía (Cat. C)', detail: 'DIMAR · Vigente 2025–2028', tip: 'Licencia oficial de la Dirección General Marítima' },
+      { name: 'Certificados STCW OMI 2025', detail: '1.01 · 1.13 · 1.19 · 1.20 · 1.21 · 1.23 · 1.38 · 1.39 · 3.09 · 3.26 · 3.27', tip: 'OMI 1.19 Supervivencia Personal · 1.20 Prevención y Lucha contra Incendios · 1.13 Primeros Auxilios · 1.01 Petroleros y Quimiqueros · 3.26/3.27 Protección Marítima' },
+      { name: 'Persona Designada en Tierra (PDT / DPA) + Código ISM', detail: '24h · 2020', tip: 'International Safety Management Code' },
+      { name: 'Inspector IMDG · Patrón de Yate', detail: '40h mercancías peligrosas · Licencia 2019', tip: 'International Maritime Dangerous Goods Code' },
+      { name: 'Socorrista de Combate', detail: 'Armada Nacional · 75h', tip: 'Primera respuesta y atención en combate' }
+    ]},
+    { label: 'HSE, ISO y Prevención', items: [
+      { name: 'Licencia en Seguridad y Salud en el Trabajo', detail: 'Sec. Salud Magdalena · Vigencia 10 años', tip: 'Campo: Diseño, Administración, Ejecución, Higiene, Investigación de Accidentes' },
+      { name: 'Auditor Interno ISO 9001 · 14001 · 45001', detail: 'Bureau Veritas · 2021', tip: 'Calidad, Ambiental y Seguridad y Salud en el Trabajo' },
+      { name: 'Diplomado Prevención de la Contaminación Marina y Fluvial', detail: 'Escuela Naval · 161h · 2020', tip: 'MARPOL y convenios OMI' },
+      { name: 'SG-SST · Trabajo Seguro en Alturas', detail: 'SENA · 50h + 40h avanzado', tip: 'Sistema de Gestión de Seguridad y Salud en el Trabajo' }
+    ]},
+    { label: 'Tech, IA, Data y Gestión', items: [
+      { name: 'Microsoft Certified: Azure AI Engineer Associate', detail: 'Microsoft · 2024', tip: 'Credential ID 11F3A8F6AE0C0912' },
+      { name: 'Microsoft Certified: Azure AI Fundamentals', detail: 'Microsoft · 2024', tip: 'Credential ID F1D5FD08C54DF622' },
+      { name: 'Google Data Analytics Professional Certificate', detail: 'Google · 2023 · SQL, R, Tableau', tip: 'Análisis de datos profesional' },
+      { name: 'Google Project Management Certificate', detail: 'Google · 2023 · Agile, Planning, Execution', tip: 'Gestión profesional de proyectos' },
+      { name: 'Full Stack Web Development', detail: 'Microverse · 2024 · Rails, React/Redux, JS', tip: 'Ruby on Rails, React/Redux, JavaScript, HTML/CSS' },
+      { name: 'Formulación MGA · Contratación Estatal', detail: 'ESAP · 80h–140h', tip: 'Metodología General Ajustada, Ley 80/1993, Ley 1150/2007' }
+    ]},
+    { label: 'Idiomas', items: [
+      { name: 'Inglés — C2 Proficient', detail: 'EF SET 74/100 · Listening 80 (C2) · Reading 68 (C1)', tip: 'Curso Intensivo 512h · Infantería de Marina' },
+      { name: 'Español — Nativo', detail: 'C2', tip: 'Lengua materna' }
+    ]}
+  ];
+
+  renderVals() {
+    const tab = this.state.tab;
+    const green = '#76b900', blue = '#4896ff', gold = '#d4af37';
+    return {
+      typedText: this.state.typedText,
+      canvasRef: this.canvasRef, nameRef: this.nameRef, emailRef: this.emailRef, topicRef: this.topicRef, msgRef: this.msgRef,
+      stats: [
+        { n: 4, suffix: 'M+', label: 'USD en proyectos gestionados', color: gold },
+        { n: 16000, suffix: '+', label: 'Empleos directos recuperados', color: green },
+        { n: 18, suffix: '+', label: 'Proyectos de inversión pública', color: blue },
+        { n: 29191, suffix: '', label: 'Millas náuticas navegadas', color: blue },
+        { n: 5, suffix: '', label: 'Posgrados internacionales', color: gold },
+        { n: 1, suffix: '', label: 'Libro publicado (ISBN 2026)', color: green }
+      ],
+      ejes: [
+        { color: green, art: 'assets/art-tech.png', alt: 'Red de nodos de IA', tag: 'EJE 01 · TECNOLOGÍA, IA & DATA', items: [
+          { title: 'Libro «IA Local con NVIDIA Jetson AGX Orin»', impact: 'ISBN registrado en la Cámara Colombiana del Libro (2026). Democratización de la IA Generativa y el Edge Computing para entornos industriales y remotos sin dependencia de la nube.' },
+          { title: 'SIG-INDETUR', impact: 'Primer sistema de inteligencia territorial de prestadores turísticos para la toma de decisiones en el Distrito de Santa Marta.' }
+        ]},
+        { color: blue, art: 'assets/art-maritime.png', alt: 'Contornos batimétricos', tag: 'EJE 02 · MARÍTIMO, OFFSHORE & OIL AND GAS', items: [
+          { title: 'JetBoat Colombia · SharkSilver Aluminium Boats S.L.', impact: 'Gerencia de inversión extranjera con presupuesto >500.000€. Estudios técnicos, económicos y de viabilidad para la expansión en LatAm.' },
+          { title: 'ARC Malpelo & Inspecciones DIMAR', impact: '+100 inspecciones técnicas con DGNSS. Operación de Ecosondas Multihaz Kongsberg EM 302 y SBP. Prevención de contaminación MARPOL en terminales marítimos.' }
+        ]},
+        { color: gold, art: 'assets/art-gov.png', alt: 'Curvas de nivel Sierra Nevada', tag: 'EJE 03 · GOBERNANZA, TURISMO & TERRITORIO', items: [
+          { title: 'Reactivación Turística Post-Pandemia (INDETUR)', impact: 'Autor de la metodología de apertura segura de playas: +16.000 empleos recuperados. 2º Premio de Mejores Prácticas — Presidencia de la República (2022).' },
+          { title: 'Sendero Sierra Nevada (USAID/DAI) · Ruta Macondo · Sentencia T-606', impact: 'Trazado y gobernanza con comunidades Kogui, Wiwa y Arhuaco. Dirección integral en 10 áreas priorizadas del Magdalena, +100 horas de pedagogía aplicada.' }
+        ]}
+      ],
+      servicios: [
+        { color: green, tag: 'STARTUPS & TECH', title: 'Para Startups y Tecnología', items: [
+          'Integración de IA Local (NVIDIA Jetson) y Edge Computing',
+          'Data Analytics & SIG (SQL, R, Tableau, ArcGIS)',
+          'Gerencia de proyectos ágiles y tradicionales (PMI, PRINCE2)',
+          'Full Stack Web Development'
+        ]},
+        { color: blue, tag: 'MARÍTIMO · OIL & GAS · PUERTOS', title: 'Para el Sector Marítimo y Energético', items: [
+          'Auditorías ISO 9001, 14001, 45001',
+          'Peritaje Marítimo: Hidrografía y Contaminación (DIMAR)',
+          'Consultoría SST — Licencia vigente 10 años',
+          'Normativa OMI, MARPOL, IMDG, ISM Code'
+        ]},
+        { color: gold, tag: 'PÚBLICO · ONG · ACADEMIA', title: 'Para Sector Público, ONG y Academia', items: [
+          'Formulación MGA y Contratación Estatal (SECOP)',
+          'Docencia universitaria y corporativa',
+          'Diseño de políticas públicas turísticas',
+          'Gestión de cooperación internacional (ONU, USAID)'
+        ]}
+      ],
+      experiencia: [
+        { color: gold, period: '2026', role: 'Director Técnico — Fortalecimiento Ecoturístico (Sentencia T-606)', org: 'Consultores de Políticas Comunitarias S.L. Colombia', focus: 'Dirección integral en 10 áreas priorizadas del Magdalena. 100 horas de capacitación validadas y cierre a entera satisfacción.' },
+        { color: blue, period: '2025', role: 'Inspector de Prevención de la Contaminación Marina y Fluvial', org: 'Capitanía de Puerto de Santa Marta — DIMAR', focus: 'Inspección de buques en operaciones de hidrocarburos. Auditoría in situ: MARPOL, OMI, IMDG, descarga de lastre.' },
+        { color: gold, period: '2024 — 2025', role: 'Consultor Senior en Turismo, Innovación Digital y Planeación', org: 'Tornus Agency · ACOTUR', focus: 'Sendero Sierra Nevada (USAID/DAI), Ruta Macondo, EMPRETUR: 21 unidades productivas fortalecidas, SIG y economía colaborativa.' },
+        { color: gold, period: '2021 — 2023', role: 'Jefe (E) Oficina de Turismo / Asesor MGA / Asesor del Despacho', org: 'Gobernación del Magdalena', focus: 'Máxima autoridad turística subnacional (E). Presupuestos >1M USD, 18+ proyectos MGA/FONTUR, Sistema Integral de Gestión.' },
+        { color: green, period: '2020 — 2022', role: 'Líder de Reactivación Turística y SIG', org: 'INDETUR Santa Marta', focus: '+16.000 empleos recuperados. Metodología premiada por la Presidencia de la República. Plan Decenal de Turismo. SIG de prestadores.' },
+        { color: blue, period: '2018 — 2020', role: 'Gerente de Proyectos de Inversión en el Extranjero', org: 'Sharksilver Aluminium Boats S.L. (España)', focus: 'JetBoat Colombia: administración de >500.000€, estudios de viabilidad y plan de expansión.' },
+        { color: blue, period: '2014 — 2018', role: 'Hidrógrafo Naval / Jefe de Apoyo / Inspector de Litorales', org: 'Armada Nacional — DIMAR (ARC Malpelo, Guapi, Cartagena)', focus: '29.191 mn navegadas, +100 inspecciones DGNSS, SECOP, logística offshore, equipos de primera respuesta y rescate.' }
+      ],
+      tabs: this.certData.map((t, i) => ({
+        label: t.label,
+        select: () => this.setState({ tab: i }),
+        bg: i === tab ? 'rgba(118,185,0,.14)' : 'rgba(255,255,255,.03)',
+        fg: i === tab ? '#b7f05a' : '#aab6c2',
+        borderColor: i === tab ? 'rgba(118,185,0,.6)' : 'rgba(255,255,255,.12)'
+      })),
+      certItems: this.certData[tab].items,
+      logros: [
+        { icon: '🏆', title: '2º Lugar Mejores Prácticas de Gestión de Destinos', text: 'Presidencia de la República de Colombia (2022), por la metodología de apertura segura de playas.' },
+        { icon: '📜', title: 'Licencia Profesional en SST', text: 'Diseño, administración, ejecución, higiene, seguridad industrial e investigación de accidentes. Vigencia 10 años.' },
+        { icon: '🌍', title: 'Gestión de Fondos Nacionales e Internacionales', text: 'Proyectos con presupuestos superiores a 1 millón de USD · Cooperación USAID, DAI, ONU.' },
+        { icon: '🤝', title: 'Articulador Comunitario', text: 'Trabajo directo con pueblos Kogui, Wiwa, Arhuaco, Kankuamo y Ette Ennaka, y comunidades rurales del Caribe y Pacífico.' }
+      ],
+      sendMail: e => {
+        e.preventDefault();
+        const n = this.nameRef.current.value, m = this.emailRef.current.value, t = this.topicRef.current.value, b = this.msgRef.current.value;
+        const subject = encodeURIComponent('[Portafolio] ' + t + ' — ' + n);
+        const body = encodeURIComponent(b + '\n\n— ' + n + '\n' + m);
+        window.location.href = 'mailto:sergioandresusma@hotmail.com?subject=' + subject + '&body=' + body;
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
