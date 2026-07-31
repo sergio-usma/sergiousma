@@ -291,6 +291,7 @@
           <li>✓ {{ b }}</li>
         </sc-for>
       </ul>
+      <a href="{{ L.libro.amazonUrl }}" target="_blank" rel="noopener" style="display:inline-block;margin-bottom:22px;padding:14px 28px;border-radius:99px;background:#76b900;color:#06120a;font-weight:700;font-size:15px;box-shadow:0 0 32px rgba(118,185,0,.35)" style-hover="transform:translateY(-2px);box-shadow:0 0 48px rgba(118,185,0,.55)">{{ L.libro.amazonLabel }}</a>
       <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#5b6875;line-height:1.8">{{ L.libro.isbn }}</div>
     </div>
   </div>
@@ -357,7 +358,7 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:#76b900;margin-bottom:14px">{{ L.contacto.directTag }}</div>
           <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
             <a href="mailto:sergioandresusma@hotmail.com">sergioandresusma@hotmail.com</a>
-            <a href="mailto:sergiovonusma@gmail.com" style="color:#aab6c2" style-hover="color:#ffffff">sergiovonusma@gmail.com</a>
+            <a href="mailto:sergiovonusma@gmail.com" style="color:#aab6c2" style-hover="color:#ffffff">wyfrox@gmail.com</a>
             <a href="tel:+573135144200" style="color:#aab6c2" style-hover="color:#ffffff">+57 313 514 4200</a>
             <a href="https://linkedin.com/in/vonusma" target="_blank" rel="noopener">linkedin.com/in/vonusma</a>
           </div>
@@ -631,7 +632,9 @@ class Component extends DCLogic {
           'Casos de uso: industria, robótica, IoT',
           'Despliegue en entornos con conectividad limitada'
         ],
-        isbn: 'ISBN 978-628-02-5454-8 · Cámara Colombiana del Libro · THEMA UYQF (IA generativa) · Digital / Kindle · Español e Inglés'
+        isbn: 'ISBN 978-628-02-5454-8 · Cámara Colombiana del Libro · THEMA UYQF (IA generativa) · Digital / Kindle · Español e Inglés',
+        amazonUrl: 'https://www.amazon.com/-/es/Sergio-Andres-Usma-ebook/dp/B0HC646JM1/ref=sr_1_5?brr=1&dib=eyJ2IjoiMSJ9.0kUz68QFgedi6gfdc3hECUs3lydd4sntClri2FCyQi6-dAXqb6lDlH6GvhTJ6quFSebHMbkTwR1EG0SOCvMVimybZYB9ap4HB4sg9O8CsU7buPvYKnND6TjlnR_0sNlwmIV8l_i-SgVkqzNcD_vOyLSH4SFyD29AsHi3wsM2clPQGiP2Zs_ftsMdALf1j5XKTGmOiAHYeqiyjdq7Gs1qd7meLM6Ke3GrTf4ittOw10o.diB2Sntl3O0d7TBoc2cuYLK12UOmmCpSE5bKgyaHsWU&dib_tag=se&qid=1785532335&rd=1&s=digital-text&sr=1-5',
+        amazonLabel: 'Comprar en Amazon'
       },
       certs: {
         tag: 'ARSENAL ACADÉMICO', h2: 'Formación y certificaciones',
@@ -794,7 +797,9 @@ class Component extends DCLogic {
           'Use cases: industry, robotics, IoT',
           'Deployment in limited-connectivity environments'
         ],
-        isbn: 'ISBN 978-628-02-5454-8 · Colombian Book Chamber · THEMA UYQF (Generative AI) · Digital / Kindle · Spanish and English'
+        isbn: 'ISBN 978-628-02-5454-8 · Colombian Book Chamber · THEMA UYQF (Generative AI) · Digital / Kindle · Spanish and English',
+        amazonUrl: 'https://www.amazon.com/-/es/Sergio-Andres-Usma-ebook/dp/B0HC646JM1/ref=sr_1_5?brr=1&dib=eyJ2IjoiMSJ9.0kUz68QFgedi6gfdc3hECUs3lydd4sntClri2FCyQi6-dAXqb6lDlH6GvhTJ6quFSebHMbkTwR1EG0SOCvMVimybZYB9ap4HB4sg9O8CsU7buPvYKnND6TjlnR_0sNlwmIV8l_i-SgVkqzNcD_vOyLSH4SFyD29AsHi3wsM2clPQGiP2Zs_ftsMdALf1j5XKTGmOiAHYeqiyjdq7Gs1qd7meLM6Ke3GrTf4ittOw10o.diB2Sntl3O0d7TBoc2cuYLK12UOmmCpSE5bKgyaHsWU&dib_tag=se&qid=1785532335&rd=1&s=digital-text&sr=1-5',
+        amazonLabel: 'Buy on Amazon'
       },
       certs: {
         tag: 'ACADEMIC ARSENAL', h2: 'Education & Certifications',
